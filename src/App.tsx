@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEventHandler } from "react";
+import { useState, useEffect, MouseEventHandler, useCallback } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
 
@@ -10,18 +10,20 @@ function App() {
 
   const updateGridItems = (rows: number, columns: number) => {
     const newGridItems = Array.from({ length: rows }).map((_, rowIndex) =>
-      Array.from({ length: columns }).map((_, columnIndex) => gridItems[rowIndex]?.[columnIndex])
+      Array.from({ length: columns }).map(
+        (_, columnIndex) => gridItems[rowIndex]?.[columnIndex]
+      )
     );
     setGridItems(newGridItems);
   };
-  
+
   const updateActiveCells = () => {
     let newActiveCells = [];
     for (let i = 0; i < gridItems.length; i++) {
-        for (let j = 0; j < gridItems[i].length; j++) {
-          const cell = gridItems[i][j];
-          if (cell) newActiveCells.push(`Zelle(${i + 1},${j + 1})`);
-        }
+      for (let j = 0; j < gridItems[i].length; j++) {
+        const cell = gridItems[i][j];
+        if (cell) newActiveCells.push(`Zelle(${i + 1},${j + 1})`);
+      }
     }
     setActiveCells(newActiveCells);
   };
@@ -51,10 +53,17 @@ function App() {
   };
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
-    const newGridItems = [ ...gridItems];
+    const newGridItems = [...gridItems];
     newGridItems[rowIndex][columnIndex] = !gridItems[rowIndex][columnIndex];
     setGridItems(newGridItems);
   };
+
+  const resetGrid = useCallback(() => {
+    setActiveCells([]);
+    setGridItems([]);
+    setRows(5);
+    setColumns(5);
+  }, [rows, columns]);
 
   return (
     <div>
@@ -68,6 +77,7 @@ function App() {
         <button onClick={RemoveGridColumn} disabled={columns === 1}>
           Spalte entfernen
         </button>
+        <button onClick={resetGrid}>Zurücksetzen</button>
       </div>
       <Grid items={gridItems} toggleCell={toggleCell}></Grid>
       <StatusList activeCells={activeCells}></StatusList>
