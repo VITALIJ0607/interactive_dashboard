@@ -36,19 +36,19 @@ function App() {
     updateActiveCells();
   }, [gridItems]);
 
-  const AddGridRow = () => {
+  const addGridRow = () => {
     setRows((prevRows) => prevRows + 1);
   };
 
-  const AddGridColumn = () => {
+  const addGridColumn = () => {
     setColumns((prevColumns) => prevColumns + 1);
   };
 
-  const RemoveGridRow = () => {
+  const removeGridRow = () => {
     setRows((prevRows) => Math.max(prevRows - 1, 0));
   };
 
-  const RemoveGridColumn = () => {
+  const removeGridColumn = () => {
     setColumns((prevColumns) => Math.max(prevColumns - 1, 0));
   };
 
@@ -76,12 +76,12 @@ function App() {
     <div>
       <h1>Interaktives Dashboard für Grid-Visualisierung</h1>
       <div>
-        <button onClick={AddGridRow}>Zeile hinzufügen</button>
-        <button onClick={RemoveGridRow} disabled={rows === 1}>
+        <button onClick={addGridRow}>Zeile hinzufügen</button>
+        <button onClick={removeGridRow} disabled={rows === 1}>
           Zeile entfernen
         </button>
-        <button onClick={AddGridColumn}>Spalte hinzufügen</button>
-        <button onClick={RemoveGridColumn} disabled={columns === 1}>
+        <button onClick={addGridColumn}>Spalte hinzufügen</button>
+        <button onClick={removeGridColumn} disabled={columns === 1}>
           Spalte entfernen
         </button>
         <button onClick={resetGrid}>Zurücksetzen</button>
