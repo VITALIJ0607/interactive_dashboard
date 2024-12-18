@@ -1,22 +1,38 @@
 import { useState, useEffect, MouseEventHandler } from "react";
 import Grid from "./components/Grid";
+import StatusList from "./components/StatusList";
 
 function App() {
   const [rows, setRows] = useState(5);
   const [columns, setColumns] = useState(5);
   const [gridItems, setGridItems] = useState<boolean[][]>([]);
+  const [activeCells, setActiveCells] = useState<string[]>([]);
 
   const updateGridItems = (rows: number, columns: number) => {
-    const newGridItems = Array.from({ length: rows }).map(() =>
-      Array.from({ length: columns }).map(() => false)
+    const newGridItems = Array.from({ length: rows }).map((_, rowIndex) =>
+      Array.from({ length: columns }).map((_, columnIndex) => gridItems[rowIndex]?.[columnIndex])
     );
     setGridItems(newGridItems);
+  };
+  
+  const updateActiveCells = () => {
+    let newActiveCells = [];
+    for (let i = 0; i < gridItems.length; i++) {
+        for (let j = 0; j < gridItems[i].length; j++) {
+          const cell = gridItems[i][j];
+          if (cell) newActiveCells.push(`Zelle(${i + 1},${j + 1})`);
+        }
+    }
+    setActiveCells(newActiveCells);
   };
 
   useEffect(() => {
     updateGridItems(rows, columns);
-    console.log(gridItems);
   }, [rows, columns]);
+
+  useEffect(() => {
+    updateActiveCells();
+  }, [gridItems]);
 
   const AddGridRow = () => {
     setRows((prevRows) => prevRows + 1);
@@ -54,6 +70,7 @@ function App() {
         </button>
       </div>
       <Grid items={gridItems} toggleCell={toggleCell}></Grid>
+      <StatusList activeCells={activeCells}></StatusList>
     </div>
   );
 }
