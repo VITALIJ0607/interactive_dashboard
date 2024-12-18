@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEventHandler, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
 
@@ -58,12 +58,19 @@ function App() {
     setGridItems(newGridItems);
   };
 
-  const resetGrid = useCallback(() => {
+  const resetGridItems = () => {
+    const newGridItems = Array.from({ length: rows }).map(() =>
+      Array.from({ length: columns }).map(() => false)
+    );
+    setGridItems(newGridItems);
+  };
+
+  const resetGrid = () => {
     setActiveCells([]);
-    setGridItems([]);
     setRows(5);
     setColumns(5);
-  }, [rows, columns]);
+    resetGridItems();
+  };
 
   return (
     <div>

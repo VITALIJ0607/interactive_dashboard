@@ -1,7 +1,3 @@
-//import "./Grid.css";
-
-import { MouseEventHandler } from "react";
-
 interface Props {
   items: boolean[][];
   toggleCell: (rowIndex: number, columnIndex: number) => void;
