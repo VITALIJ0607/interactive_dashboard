@@ -69,7 +69,6 @@ function App() {
   };
 
   const resetGrid = () => {
-    setActiveCells([]);
     resetGridItems();
     setRows(initialRows);
     setColumns(initialColumns);
