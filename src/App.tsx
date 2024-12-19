@@ -8,7 +8,10 @@ const initialColumns = 5;
 function App() {
   const [rows, setRows] = useState(initialRows);
   const [columns, setColumns] = useState(initialColumns);
-  const [gridItems, setGridItems] = useState<boolean[][]>([]);
+  const initialGridItems = Array.from({ length: initialRows }).map(() =>
+    Array.from({ length: initialColumns }).map(() => false)
+  );
+  const [gridItems, setGridItems] = useState<boolean[][]>(initialGridItems);
   const [activeCells, setActiveCells] = useState<string[]>([]);
 
   const updateGridItems = (rows: number, columns: number) => {
@@ -61,15 +64,8 @@ function App() {
     setGridItems(newGridItems);
   };
 
-  const resetGridItems = () => {
-    const newGridItems = Array.from({ length: initialRows}).map(() =>
-      Array.from({ length: initialColumns}).map(() => false)
-    );
-    setGridItems(newGridItems);
-  };
-
   const resetGrid = () => {
-    resetGridItems();
+    setGridItems(initialGridItems);
     setRows(initialRows);
     setColumns(initialColumns);
   };
