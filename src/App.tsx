@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
 
-const initialRows = 5;
-const initialColumns = 5;
 
 function App() {
+  const initialRows = 5;
+  const initialColumns = 5;
+    const initialGridItems = Array.from({ length: initialRows }).map(() =>
+      Array.from({ length: initialColumns }).map(() => false)
+    );
   const [rows, setRows] = useState(initialRows);
   const [columns, setColumns] = useState(initialColumns);
-  const initialGridItems = Array.from({ length: initialRows }).map(() =>
-    Array.from({ length: initialColumns }).map(() => false)
-  );
   const [gridItems, setGridItems] = useState<boolean[][]>(initialGridItems);
   const [activeCells, setActiveCells] = useState<string[]>([]);
 
