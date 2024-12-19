@@ -2,9 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
 
+const initialRows = 5;
+const initialColumns = 5;
+
 function App() {
-  const [rows, setRows] = useState(5);
-  const [columns, setColumns] = useState(5);
+  const [rows, setRows] = useState(initialRows);
+  const [columns, setColumns] = useState(initialColumns);
   const [gridItems, setGridItems] = useState<boolean[][]>([]);
   const [activeCells, setActiveCells] = useState<string[]>([]);
 
@@ -59,17 +62,17 @@ function App() {
   };
 
   const resetGridItems = () => {
-    const newGridItems = Array.from({ length: rows }).map(() =>
-      Array.from({ length: columns }).map(() => false)
+    const newGridItems = Array.from({ length: initialRows}).map(() =>
+      Array.from({ length: initialColumns}).map(() => false)
     );
     setGridItems(newGridItems);
   };
 
   const resetGrid = () => {
     setActiveCells([]);
-    setRows(5);
-    setColumns(5);
     resetGridItems();
+    setRows(initialRows);
+    setColumns(initialColumns);
   };
 
   return (
