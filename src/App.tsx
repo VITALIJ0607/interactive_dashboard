@@ -6,9 +6,9 @@ import StatusList from "./components/StatusList";
 function App() {
   const initialRows = 5;
   const initialColumns = 5;
-    const initialGridItems = Array.from({ length: initialRows }).map(() =>
-      Array.from({ length: initialColumns }).map(() => false)
-    );
+  const initialGridItems = Array.from({ length: initialRows }).map(() =>
+    Array.from({ length: initialColumns }).map(() => false)
+  );
   const [rows, setRows] = useState(initialRows);
   const [columns, setColumns] = useState(initialColumns);
   const [gridItems, setGridItems] = useState<boolean[][]>(initialGridItems);
