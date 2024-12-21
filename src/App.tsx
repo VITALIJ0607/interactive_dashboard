@@ -12,7 +12,7 @@ function App() {
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     const cellKey = `${rowIndex},${columnIndex}`;
-    setActiveCells((prev) => {
+    setActiveCells((prev: Set<string>) => {
       const updated = new Set(prev);
       if (updated.has(cellKey)) {
         updated.delete(cellKey);
@@ -26,7 +26,7 @@ function App() {
   const resetGrid = () => {
     setRows(INITIAL_ROWS);
     setColumns(INITIAL_COLUMNS);
-    setActiveCells(new Set());
+    setActiveCells(new Set<string>());
   };
 
   const modifyRowCount = (delta: number) => {
@@ -45,8 +45,11 @@ function App() {
     });
   };
 
-  const updateActiveCellsForGridSize = (newRows: number, newColumns: number) => {
-    setActiveCells((prev :Set<string>) => {
+  const updateActiveCellsForGridSize = (
+    newRows: number,
+    newColumns: number
+  ) => {
+    setActiveCells((prev: Set<string>) => {
       const updated = new Set<string>();
       for (const cell of prev) {
         const [rowIndex, columnIndex] = cell.split(",").map(Number);
