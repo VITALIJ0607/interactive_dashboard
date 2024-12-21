@@ -7,7 +7,7 @@ const StatusList = ({ activeCells}: Props) => {
     <div>
         <h3>Aktivierte Zellen</h3>
         <ul>
-            {activeCells.map(cell => <li key={cell}>{cell}</li>)}
+            {activeCells.map(cell => <li key={cell}>Zelle({cell})</li>)}
         </ul>
     </div>
   )
