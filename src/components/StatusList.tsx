@@ -1,16 +1,18 @@
 interface Props {
-    activeCells: string[];
+  activeCells: string[];
 }
 
-const StatusList = ({ activeCells}: Props) => {
+const StatusList = ({ activeCells }: Props) => {
   return (
     <div>
-        <h3>Aktivierte Zellen</h3>
-        <ul>
-            {activeCells.map(cell => <li key={cell}>Zelle({cell})</li>)}
-        </ul>
+      <h3>Aktivierte Zellen</h3>
+      <ul>
+        {activeCells.map((cell) => (
+          <li key={cell}>Zelle({cell})</li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
 export default StatusList;

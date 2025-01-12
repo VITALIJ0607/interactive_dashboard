@@ -69,7 +69,18 @@ function App() {
     );
   };
 
+  const sortActiveCells = () => {
+    return Array.from(activeCells).sort((current: string, next: string) => {
+      const [currentX, currentY] = current.split(",");
+      const [nextX, nextY] = next.split(",");
+      if (currentX > nextX) return 1;
+      if (currentX === nextX) return currentY > nextY ? 1 : -1;
+      return -1;
+    });
+  };
+
   const gridItems = generateGridItems();
+  const sortedActiveCells = sortActiveCells();
 
   return (
     <div>
@@ -85,8 +96,8 @@ function App() {
         </button>
         <button onClick={resetGrid}>Zurücksetzen</button>
       </div>
-      <Grid items={gridItems} toggleCell={toggleCell} />
-      <StatusList activeCells={Array.from(activeCells)} />
+      <Grid items={gridItems} onToggleCell={toggleCell} />
+      <StatusList activeCells={sortedActiveCells} />
     </div>
   );
 }
