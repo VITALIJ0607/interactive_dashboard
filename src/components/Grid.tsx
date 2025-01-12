@@ -1,30 +1,30 @@
+import GridRow from "./GridRow";
+import GridContext from "../contexts/grid";
+
 interface Props {
-  items: boolean[][];
+  rows: number;
+  columns: number;
+  activeCells: Set<string>;
   onToggleCell: (rowIndex: number, columnIndex: number) => void;
 }
 
-const Grid = ({ items, onToggleCell }: Props) => {
+const Grid = ({ rows, columns, activeCells, onToggleCell }: Props) => {
+  const generateGridItems = () => {
+    return Array.from({ length: rows }, (_, rowIndex) =>
+      Array.from({ length: columns }, (_, columnIndex) =>
+        activeCells.has(`${rowIndex},${columnIndex}`)
+      )
+    );
+  };
+
+  const gridItems: boolean[][] = generateGridItems();
+
   return (
-    <div>
-      {items.map((row, rowIndex) => (
-        <div key={rowIndex} style={{ display: "flex" }}>
-          {row.map((cell, columnIndex) => (
-            <div
-              key={columnIndex}
-              onClick={() => onToggleCell(rowIndex, columnIndex)}
-              style={{
-                border: "1px solid black",
-                padding: "10px",
-                margin: "2px",
-                background: cell ? "green" : "grey",
-              }}
-            >
-              {cell}
-            </div>
-          ))}
-        </div>
+    <GridContext.Provider value={{ onToggleCell }}>
+      {gridItems.map((rowItems, rowIndex) => (
+        <GridRow key={rowIndex} rowIndex={rowIndex} rowItems={rowItems} />
       ))}
-    </div>
+    </GridContext.Provider>
   );
 };
 
