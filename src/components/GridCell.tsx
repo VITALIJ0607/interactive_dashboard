@@ -15,7 +15,7 @@ const GridCell = ({ rowIndex, columnIndex, value }: Props) => {
       onClick={() => onToggleCell(rowIndex, columnIndex)}
       style={{
         border: "1px solid black",
-        padding: "10px",
+        padding: "30px",
         margin: "2px",
         background: value ? "green" : "grey",
       }}
