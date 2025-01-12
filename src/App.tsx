@@ -2,10 +2,10 @@ import { useState } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
 
-function App() {
-  const INITIAL_ROWS = 5;
-  const INITIAL_COLUMNS = 5;
+const INITIAL_ROWS = 5;
+const INITIAL_COLUMNS = 5;
 
+function App() {
   const [rows, setRows] = useState(INITIAL_ROWS);
   const [columns, setColumns] = useState(INITIAL_COLUMNS);
   const [activeCells, setActiveCells] = useState(new Set<string>());
