@@ -76,7 +76,7 @@ function App() {
   return (
     <div>
       <h1>Interaktives Dashboard für Grid-Visualisierung</h1>
-      <div>
+      <div style={{ display: "flex", gap: "5px" }}>
         <button onClick={() => modifyRowCount(1)}>Zeile hinzufügen</button>
         <button onClick={() => modifyRowCount(-1)} disabled={rows === 1}>
           Zeile entfernen
@@ -87,13 +87,15 @@ function App() {
         </button>
         <button onClick={resetGrid}>Zurücksetzen</button>
       </div>
-      <Grid
-        rows={rows}
-        columns={columns}
-        activeCells={activeCells}
-        onToggleCell={toggleCell}
-      />
-      <StatusList activeCells={sortedActiveCells} />
+      <div style={{ marginTop: "10px", display: "flex", gap: "300px" }}>
+        <Grid
+          rows={rows}
+          columns={columns}
+          activeCells={activeCells}
+          onToggleCell={toggleCell}
+        />
+        <StatusList activeCells={sortedActiveCells} />
+      </div>
     </div>
   );
 }

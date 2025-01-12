@@ -20,11 +20,13 @@ const Grid = ({ rows, columns, activeCells, onToggleCell }: Props) => {
   const gridItems: boolean[][] = generateGridItems();
 
   return (
-    <GridContext.Provider value={{ onToggleCell }}>
-      {gridItems.map((rowItems, rowIndex) => (
-        <GridRow key={rowIndex} rowIndex={rowIndex} rowItems={rowItems} />
-      ))}
-    </GridContext.Provider>
+    <div>
+      <GridContext.Provider value={{ onToggleCell }}>
+        {gridItems.map((rowItems, rowIndex) => (
+          <GridRow key={rowIndex} rowIndex={rowIndex} rowItems={rowItems} />
+        ))}
+      </GridContext.Provider>
+    </div>
   );
 };
 
