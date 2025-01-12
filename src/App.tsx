@@ -79,8 +79,8 @@ function App() {
     });
   };
 
-  const gridItems = generateGridItems();
-  const sortedActiveCells = sortActiveCells();
+  const gridItems: boolean[][] = generateGridItems();
+  const sortedActiveCells: string[] = sortActiveCells();
 
   return (
     <div>
