@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Grid from "./components/Grid";
 import StatusList from "./components/StatusList";
+import ButtonGroup from "./components/ButtonGroup";
 
 const INITIAL_ROWS = 5;
 const INITIAL_COLUMNS = 5;
@@ -76,7 +77,7 @@ function App() {
   return (
     <div>
       <h1>Interaktives Dashboard für Grid-Visualisierung</h1>
-      <div style={{ display: "flex", gap: "5px" }}>
+      <ButtonGroup>
         <button onClick={() => modifyRowCount(1)}>Zeile hinzufügen</button>
         <button onClick={() => modifyRowCount(-1)} disabled={rows === 1}>
           Zeile entfernen
@@ -86,7 +87,7 @@ function App() {
           Spalte entfernen
         </button>
         <button onClick={resetGrid}>Zurücksetzen</button>
-      </div>
+      </ButtonGroup>
       <div style={{ marginTop: "10px", display: "flex", gap: "300px" }}>
         <Grid
           rows={rows}
