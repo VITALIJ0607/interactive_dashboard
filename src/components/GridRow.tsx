@@ -5,13 +5,13 @@ interface Props {
   rowItems: boolean[];
 }
 
-const GridRow = ({ rowIndex: key, rowItems }: Props) => {
+const GridRow = ({ rowIndex, rowItems }: Props) => {
   return (
     <div style={{ display: "flex" }}>
       {rowItems.map((value: boolean, columnIndex: number) => (
         <GridCell
           key={columnIndex}
-          rowIndex={key}
+          rowIndex={rowIndex}
           columnIndex={columnIndex}
           value={value}
         />
