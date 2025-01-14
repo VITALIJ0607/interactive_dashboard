@@ -5,7 +5,11 @@ interface Props {
   rows: number;
   columns: number;
   activeCells: Set<string>;
-  onToggleCell: (rowIndex: number, columnIndex: number) => void;
+  onToggleCell: (
+    rowIndex: number,
+    columnIndex: number,
+    newValue: boolean
+  ) => void;
 }
 
 const Grid = ({ rows, columns, activeCells, onToggleCell }: Props) => {
@@ -18,7 +22,6 @@ const Grid = ({ rows, columns, activeCells, onToggleCell }: Props) => {
   };
 
   const gridItems: boolean[][] = generateGridItems();
-
   return (
     <div>
       <GridContext.Provider value={{ onToggleCell }}>

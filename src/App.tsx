@@ -11,15 +11,16 @@ function App() {
   const [columns, setColumns] = useState(INITIAL_COLUMNS);
   const [activeCells, setActiveCells] = useState(new Set<string>());
 
-  const toggleCell = (rowIndex: number, columnIndex: number) => {
+  const toggleCell = (
+    rowIndex: number,
+    columnIndex: number,
+    newValue: boolean
+  ) => {
     const cellKey = `${rowIndex},${columnIndex}`;
     setActiveCells((prev: Set<string>) => {
-      const updated = new Set(prev);
-      if (updated.has(cellKey)) {
-        updated.delete(cellKey);
-      } else {
-        updated.add(cellKey);
-      }
+      const updated = new Set<string>(prev);
+      if (newValue) updated.add(cellKey);
+      else updated.delete(cellKey);
       return updated;
     });
   };

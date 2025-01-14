@@ -12,7 +12,7 @@ const GridCell = ({ rowIndex, columnIndex, value }: Props) => {
   return (
     <div
       key={columnIndex}
-      onClick={() => onToggleCell(rowIndex, columnIndex)}
+      onClick={() => onToggleCell(rowIndex, columnIndex, !value)}
       style={{
         border: "1px solid black",
         padding: "30px",
