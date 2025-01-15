@@ -1,5 +1,5 @@
 # Use an official node image as the base image
-FROM node:18.20.5-alpine
+FROM node:18.20.5-alpine AS build-stage
 
 # Set the working directory
 WORKDIR /app
@@ -16,11 +16,14 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Install a lightweight web server to serve the built files
-RUN npm install -g serve
+# Use an official nginx image as the base image
+FROM nginx:alpine3.20
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Copy the built application from the build stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Command to run the application
-CMD ["serve", "-s", "dist", "-l", "5000"]
+# Expose port 80
+EXPOSE 80
+
+# Start nginx in the foreground
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
