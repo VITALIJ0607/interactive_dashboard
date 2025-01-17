@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
-const GridContext = createContext<{
+type GridContextType = {
   onToggleCell: (
     rowIndex: number,
     columnIndex: number,
     newValue: boolean
   ) => void;
-}>({
-  onToggleCell: () => {},
-});
+};
+
+const GridContext = createContext<GridContextType>({} as GridContextType);
 
 export default GridContext;
