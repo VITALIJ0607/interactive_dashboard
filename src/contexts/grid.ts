@@ -1,11 +1,7 @@
 import { createContext } from "react";
 
 type GridContextType = {
-  onToggleCell: (
-    rowIndex: number,
-    columnIndex: number,
-    newValue: boolean
-  ) => void;
+  toggleDispatch: (rowIndex: number, columnIndex: number) => void;
 };
 
 const GridContext = createContext<GridContextType>({} as GridContextType);

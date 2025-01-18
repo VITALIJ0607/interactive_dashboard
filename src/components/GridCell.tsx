@@ -8,11 +8,11 @@ interface Props {
 }
 
 const GridCell = ({ rowIndex, columnIndex, value }: Props) => {
-  const { onToggleCell } = useContext(GridContext);
+  const { toggleDispatch } = useContext(GridContext);
   return (
     <div
       key={columnIndex}
-      onClick={() => onToggleCell(rowIndex, columnIndex, !value)}
+      onClick={() => toggleDispatch(rowIndex, columnIndex)}
       style={{
         border: "1px solid black",
         padding: "30px",
