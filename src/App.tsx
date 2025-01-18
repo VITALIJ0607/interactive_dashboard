@@ -34,7 +34,7 @@ function App() {
           Zurücksetzen
         </button>
       </ButtonGroup>
-      <div style={{ marginTop: "10px", display: "flex", gap: "300px" }}>
+      <div style={{ marginTop: "10px", display: "flex", gap: "150px" }}>
         <GridContext.Provider
           value={{
             toggleDispatch: (rowIndex: number, columnIndex: number) =>
